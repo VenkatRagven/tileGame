@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tiles GAme</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/customScript.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="centerTitle">
+		<!-- <a class="navbar-brand" href="#"></a> -->
+		<p>
+			<span class="gameTitle">N</span>
+			<span class="gameTitle">U</span>
+			<span class="gameTitle">B</span>
+			<span class="gameTitle">L</span>
+			<span class="gameTitle">E</span>
+		</p>  
+    </div>
+    <!-- <ul class="nav navbar-nav">
+      <li class="active"><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul> -->
+  </div>
+</nav>  
+<div class="container">
+  <div class="row margintop30px">
+    <div class="col-md-3 centerDiv ">
+      <!-- <h3>Column 1</h3> -->
+      <p><i class="fa fa-bolt fa-lg" aria-hidden="true"></i><span class="boldText"> Moves: 10 </span></p>
+	  <p><i class="fa fa-hourglass-start fa-md" aria-hidden="true"></i><span class="boldText" id="timeCalc"> <time>00:00:00</time></span></p>
+      <p><button type="button" class="btn  undoBtn" id="start">Undo</button></p>
+	  <p><button type="button" class="btn  newBtn" id="newGame">New Game</button></p>
+	  <p><button type="button" class="btn  solveBtn" id="autoSolve" >Auto Solve</button></p>
+    </div>
+    <div class="col-md-6 ">
+      <!-- <h3>Column 2</h3> -->
+      <div class="row numberRow" id="test">
+		
+	  </div>
+    </div>
+	<!-- <div class="col-sm-1">&nbsp;</div> -->
+    <div class="col-md-3 moveDetails">
+      <!-- <h3>Moves</h3> -->
+	  <h3>Moves</h3>
+      <p> Tile 12 to 4,4</p>
+      <p> Tile 1 to 3,4</p>
+    </div>
+  </div>
+  <div class="row">
+	<p class="centerDiv margintop30px fontsize30px"> .................... </p>
+	<p class="centerDiv difficult"> Difficulty Level </p>
+	<p class="centerDiv">
+		<span class="btnSection">
+			<button type="button" class="btn  difficultselect easyBtn">Easy</button>
+			<button type="button" class="btn  difficultselect mediumBtn activeBtn">Medium</button>
+			<button type="button" class="btn  difficultselect difficultBtn">Difficult</button>
+			<button type="button" class="btn  difficultselect customBtn">Custom</button>
+		</span>	
+	</p>	
+  </div>
+</div>
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        
+        <div class="modal-body">
+          <p>Auto Solving</p>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+$(".btnSection > .btn").click(function(){
+    $(this).addClass("activeBtn").siblings().removeClass("activeBtn");
+});
+});
+
+
+var h1 = document.getElementsByTagName('time')[0],
+    startTime = document.getElementById('start'),
+    stopTime = document.getElementById('autoSolve'),
+    clearTime = document.getElementById('newGame'),
+    seconds = 0, minutes = 0, hours = 0,
+    t;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+timer();
+
+
+/* Start button */
+startTime.onclick = timer;
+
+/* Stop button */
+var y = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,'&nbsp;'];
+var x1 = [7,5,12,4,10,6,1,3,2,11,9,13,8,15,14,'&nbsp;'];
+stopTime.onclick = function(arr) {
+    clearTimeout(t);
+	var r = confirm("Auto Solving!");
+    if (r == true) {
+			document.getElementById('test').innerHTML=formGrid(y);
+    } else {
+        document.getElementById('test').innerHTML=formGrid(x1);
+    }
+	
+}
+
+/* Clear button */
+clearTime.onclick = function() {
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+	
+}	
+
+
+
+var x = [7,5,12,4,10,6,1,3,2,11,9,13,8,15,14,'&nbsp;'];
+
+function formGrid(arr){
+	return arr.map(elm=>{
+	if(elm === '&nbsp;')
+	 return `<div class="col-sm-3 emptyBox">${elm}</div>`
+	 else 
+	 return `<div class="col-sm-3 numberBox">${elm}</div>`
+	}).reduce((a,b)=>a+b);
+}
+
+	
+	document.getElementById('test').innerHTML=formGrid(x);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.navbar-default {background-color: #F4B321;border-color: #e7e7e7;}
+.navbar{min-height:75px;}
+body{background:#73CFE8}
+.centerTitle > p {text-align:center;position:relative;top:50px;}
+.gameTitle{font-size:32px;color:#fff;display: inline-block;width: 50px;border: 1px solid #fff;
+text-align: center;font-family:Castellar;}
+.fa-bolt{color:#F6E924;}
+.boldText{font-weight: bold;color: #333;padding: 5px;font-size: 16px;}
+.btn-primary{min-width:150px;}
+.undoBtn{background:#F79320;border:1px solid #F79320;color:#fff;}
+.newBtn{background:#8CC640;border:1px solid #8CC640;color:#fff;}
+.solveBtn{background:#D3145A;border:1px solid #D3145A;color:#fff;}
+.moveDetails{background:#96E5F4;height:230px;}
+.moveDetails > h3 {color:#0B77B9;}
+.difficult{color:#0B77B9;font-weight:bold;font-size:18px;}
+/* .emptyBox{background:#5DA8BD !important;} */
+.emptyBox{background:transparent;}
+.numberBox{
+    /* border: 1px solid silver;
+    background: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    border-radius: 10px;
+    text-align: center;
+    margin: 2px 0px;
+    padding: 15px; */
+	text-align: center;background: #EBEBEB;border: 1px solid #d2d2d2;border-radius: 5px;
+	padding:15px;width:25%;float:left;cursor:pointer;
+	}
+.btn{width:150px;}	
+.spacing{padding:5px;}	
+.numberRow {margin-right: 15px;margin-left: 15px;background: #61B6CB;padding: 5px;margin-top: 0px;}
+.margintop30px{margin-top:40px;}
+.centerDiv{text-align:center;}
+.fontsize30px{font-size:30px;}
+.difficultselect{background:#96E5F4;}
+.easyBtn,.customBtn, .mediumBtn{color: #0B77B9;font-weight:bold;}
+.btn-primary:hover{background:transparent;}
+.difficultBtn{color:#D3145A;font-weight:bold;}
+.activeBtn{background:#fff;color:#F79320 !important;border:1px solid #F79320 !important}
+
